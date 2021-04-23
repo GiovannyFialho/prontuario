@@ -1,21 +1,18 @@
-import Default, { DefaultProps } from "components/Default";
+import Link from "next/link";
 
-export default function Home(props: DefaultProps) {
-    return <Default {...props} />;
-}
+import { Container } from "components/Container";
+import Title from "components/Title";
 
-export async function getStaticProps() {
-    return {
-        props: {
-            title: "React Boilerplate",
-            techs: [
-                "typescript",
-                "reactJS",
-                "nextJS",
-                "styledComponents",
-                "jest",
-                "storybook"
-            ]
-        }
-    };
+export default function Home() {
+    return (
+        <Container>
+            <Title>Protuário Eletrônico</Title>
+
+            <p>Nenhum prontuário cadastrado</p>
+
+            <Link href="/cadastro-prontuario" passHref>
+                <a className="buttonAdd">Adicionar novo prontuário</a>
+            </Link>
+        </Container>
+    );
 }
