@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import { Container } from "components/Container";
 import Title from "components/Title";
 
@@ -11,12 +13,20 @@ import TextArea from "components/TextArea";
 import api from "services/api";
 
 export default function Cadastro() {
-    const itemsQueixas = api
-        .get("/queixas")
-        .then((response) => response.data)
-        .catch((err) => console.log(`Ops! Error: ${err}`));
+    const [doencas, setDoencas] = useState();
+    const [queixas, setQueixas] = useState();
 
-    console.log(itemsQueixas);
+    useEffect(() => {
+        api.get("queixas")
+            .then((response) => setQueixas(response.data.data))
+            .catch((err) => console.log(`Ops! Error: ${err}`));
+    }, []);
+
+    useEffect(() => {
+        api.get("doencas")
+            .then((response) => setDoencas(response.data.data))
+            .catch((err) => console.log(`Ops! Error: ${err}`));
+    }, []);
 
     return (
         <Container>

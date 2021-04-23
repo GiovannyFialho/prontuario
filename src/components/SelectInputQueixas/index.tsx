@@ -15,11 +15,8 @@ const SelectInputQueixas = ({ label, items }: SelectInputQueixasProps) => (
         <Label>{label}</Label>
 
         <Select>
-            <option defaultValue="Selecione..." hidden disabled>
-                Selecione...
-            </option>
             {items.map((item) => (
-                <option key={`item-${item.id}`} value={item.id}>
+                <option key={`item-${item.id}`} value={item.label}>
                     {item.label}
                 </option>
             ))}

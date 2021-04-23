@@ -28,11 +28,8 @@ const SelectInputDoencas = ({ label, items }: SelectInputDoencasProps) => {
             <Label>{label}</Label>
 
             <Select onChange={(e) => setDoencas([...doencas, e.target.value])}>
-                <option defaultValue="Selecione..." hidden disabled>
-                    Selecione...
-                </option>
                 {items.map((item) => (
-                    <option key={`item-${item.id}`} value={item.id}>
+                    <option key={`item-${item.id}`} value={item.label}>
                         {item.label}
                     </option>
                 ))}

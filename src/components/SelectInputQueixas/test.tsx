@@ -17,6 +17,6 @@ describe("<SelectInput />", () => {
 
         expect(
             screen.getByRole("option", { name: selectMock[0].label })
-        ).toHaveAttribute("value", `${selectMock[0].id}`);
+        ).toHaveAttribute("value", `${selectMock[0].label}`);
     });
 });

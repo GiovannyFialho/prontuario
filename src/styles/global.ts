@@ -17,6 +17,9 @@ const GlobalStyles = createGlobalStyle`
         font-family: ---apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         background-color: #EBEBEB;
     }
+    button{
+        cursor: pointer;
+    }
     .buttonAdd{
         color: #fff;
         font-size: 1.3rem;
