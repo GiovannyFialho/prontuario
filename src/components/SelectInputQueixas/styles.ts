@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     margin-bottom: 2rem;
-    padding: 0 1rem;
 `;
 
 export const Label = styled.h2`

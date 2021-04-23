@@ -28,6 +28,7 @@ const GlobalStyles = createGlobalStyle`
         width: max-content;
         border-radius: .5rem;
         transition: background-color .2s ease-in-out;
+        border: none;
         &:hover{
             background-color: ${darken(0.1, "#e63946")}
         }
@@ -48,6 +49,9 @@ const GlobalStyles = createGlobalStyle`
                 font-size: 1.8rem;
                 color: ${darken(0.6, "#bee3db")};
             }
+        }
+        form {
+            padding: 0 1rem;
         }
     }
 `;

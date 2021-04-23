@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 
-import SelectInput, { SelectInputProps } from ".";
+import SelectInput, { SelectInputDoencasProps } from ".";
 
 import selectMock from "./mock";
 
-const props: SelectInputProps = {
+const props: SelectInputDoencasProps = {
     label: "A simple title",
     items: selectMock
 };
@@ -17,6 +17,6 @@ describe("<SelectInput />", () => {
 
         expect(
             screen.getByRole("option", { name: selectMock[0].label })
-        ).toHaveAttribute("value", selectMock[0].label);
+        ).toHaveAttribute("value", `${selectMock[0].id}`);
     });
 });

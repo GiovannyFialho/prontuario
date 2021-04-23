@@ -8,25 +8,40 @@ import SelectInputDoencas from "components/SelectInputDoencas";
 
 import TextArea from "components/TextArea";
 
+import api from "services/api";
+
 export default function Cadastro() {
+    const itemsQueixas = api
+        .get("/queixas")
+        .then((response) => response.data)
+        .catch((err) => console.log(`Ops! Error: ${err}`));
+
+    console.log(itemsQueixas);
+
     return (
         <Container>
             <Title>Cadastro de Prontuário</Title>
 
-            <form className="formContent">
+            <div className="formContent">
                 <div className="titleForm">
                     <h2>Anamnese</h2>
                 </div>
+                <form>
+                    <SelectInputQueixas
+                        label="Queixa Principal"
+                        items={selectMock}
+                    />
 
-                <SelectInputQueixas
-                    label="Queixa Principal"
-                    items={selectMock}
-                />
+                    <SelectInputDoencas
+                        label="Doenças Adulto"
+                        items={selectMock}
+                    />
 
-                <SelectInputDoencas label="Doenças Adulto" items={selectMock} />
+                    <TextArea title="Histórico da Moléstia" />
 
-                <TextArea title="Histórico da Moléstia" />
-            </form>
+                    <button className="buttonAdd">Salvar</button>
+                </form>
+            </div>
         </Container>
     );
 }
