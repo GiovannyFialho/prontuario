@@ -15,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
     }
     body{
         font-family: ---apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        background-color: #EBEBEB;
     }
     .buttonAdd{
         color: #fff;
@@ -34,13 +35,14 @@ const GlobalStyles = createGlobalStyle`
     .formContent{
         max-width: 80rem;
         width: 100%;
+        background-color: #fff;
+        border-radius: .8rem;
         .titleForm{
             background-color: #bee3db;
-            width: max-content;
             padding: 10px 15px;
+            margin-bottom: 1rem;
             border-top-left-radius: .8rem;
             border-top-right-radius: .8rem;
-            margin-bottom: 1rem;
             h2 {
                 font-weight: 500;
                 font-size: 1.8rem;

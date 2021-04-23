@@ -1,8 +1,12 @@
 import { Container } from "components/Container";
 import Title from "components/Title";
 
-import SelectInput from "components/SelectInput";
-import selectMock from "components/SelectInput/mock";
+import SelectInputQueixas from "components/SelectInputQueixas";
+import selectMock from "components/SelectInputQueixas/mock";
+
+import SelectInputDoencas from "components/SelectInputDoencas";
+
+import TextArea from "components/TextArea";
 
 export default function Cadastro() {
     return (
@@ -14,7 +18,14 @@ export default function Cadastro() {
                     <h2>Anamnese</h2>
                 </div>
 
-                <SelectInput label="Doenças Adulto" items={selectMock} />
+                <SelectInputQueixas
+                    label="Queixa Principal"
+                    items={selectMock}
+                />
+
+                <SelectInputDoencas label="Doenças Adulto" items={selectMock} />
+
+                <TextArea title="Histórico da Moléstia" />
             </form>
         </Container>
     );

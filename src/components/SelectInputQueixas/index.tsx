@@ -5,12 +5,12 @@ type itemsProps = {
     id: number;
 };
 
-export type SelectInputProps = {
+export type SelectInputQueixasProps = {
     label: string;
     items: itemsProps[];
 };
 
-const SelectInput = ({ label, items }: SelectInputProps) => (
+const SelectInputQueixas = ({ label, items }: SelectInputQueixasProps) => (
     <Wrapper>
         <Label>{label}</Label>
 
@@ -27,4 +27,4 @@ const SelectInput = ({ label, items }: SelectInputProps) => (
     </Wrapper>
 );
 
-export default SelectInput;
+export default SelectInputQueixas;
