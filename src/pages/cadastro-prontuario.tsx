@@ -2,13 +2,11 @@ import { useState, useEffect } from "react";
 
 import { Container } from "components/Container";
 import Title from "components/Title";
-
 import SelectInputQueixas from "components/SelectInputQueixas";
-import selectMock from "components/SelectInputQueixas/mock";
-
 import SelectInputDoencas from "components/SelectInputDoencas";
-
 import TextArea from "components/TextArea";
+
+import selectMock from "components/SelectInputQueixas/mock";
 
 import api from "services/api";
 
@@ -34,6 +32,7 @@ export default function Cadastro() {
                 <div className="titleForm">
                     <h2>Anamnese</h2>
                 </div>
+
                 <form>
                     <SelectInputQueixas
                         label="Queixa Principal"

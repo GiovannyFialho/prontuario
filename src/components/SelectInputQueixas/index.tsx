@@ -14,9 +14,13 @@ const SelectInputQueixas = ({ label, items }: SelectInputQueixasProps) => (
     <Wrapper>
         <Label>{label}</Label>
 
-        <Select>
+        <Select required>
             {items.map((item) => (
-                <option key={`item-${item.id}`} value={item.label}>
+                <option
+                    key={`item-${item.id}`}
+                    value={item.label}
+                    data-id={item.id}
+                >
                     {item.label}
                 </option>
             ))}

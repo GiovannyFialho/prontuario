@@ -29,7 +29,11 @@ const SelectInputDoencas = ({ label, items }: SelectInputDoencasProps) => {
 
             <Select onChange={(e) => setDoencas([...doencas, e.target.value])}>
                 {items.map((item) => (
-                    <option key={`item-${item.id}`} value={item.label}>
+                    <option
+                        key={`item-${item.id}`}
+                        value={item.label}
+                        data-id={item.id}
+                    >
                         {item.label}
                     </option>
                 ))}
