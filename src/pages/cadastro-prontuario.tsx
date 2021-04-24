@@ -13,16 +13,14 @@ import TextArea from "components/TextArea";
 import api from "services/api";
 
 export default function Cadastro() {
-    const [doencas, setDoencas] = useState();
-    const [queixas, setQueixas] = useState();
+    const [doencas, setDoencas] = useState([]);
+    const [queixas, setQueixas] = useState([]);
 
     useEffect(() => {
         api.get("queixas")
             .then((response) => setQueixas(response.data.data))
             .catch((err) => console.log(`Ops! Error: ${err}`));
-    }, []);
 
-    useEffect(() => {
         api.get("doencas")
             .then((response) => setDoencas(response.data.data))
             .catch((err) => console.log(`Ops! Error: ${err}`));
@@ -39,12 +37,12 @@ export default function Cadastro() {
                 <form>
                     <SelectInputQueixas
                         label="Queixa Principal"
-                        items={selectMock}
+                        items={queixas}
                     />
 
                     <SelectInputDoencas
                         label="Doenças Adulto"
-                        items={selectMock}
+                        items={doencas}
                     />
 
                     <TextArea title="Histórico da Moléstia" />
