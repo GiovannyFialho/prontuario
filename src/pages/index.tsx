@@ -8,7 +8,9 @@ export default function Home() {
         <Container>
             <Title>Protuário Eletrônico</Title>
 
-            <p>Nenhum prontuário cadastrado</p>
+            <div className="msgError alignRight">
+                <h2>Nenhum prontuário cadastrado</h2>
+            </div>
 
             <Link href="/cadastro-prontuario" passHref>
                 <a className="buttonAdd">Adicionar novo prontuário</a>

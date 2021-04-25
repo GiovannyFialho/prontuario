@@ -36,6 +36,28 @@ const GlobalStyles = createGlobalStyle`
             background-color: ${darken(0.1, "#e63946")}
         }
     }
+    .msgError{
+        margin: 2rem auto;
+        padding: 3rem;
+        background-color: #fff;
+        border-radius: .8rem;
+        width: 100%;
+        max-width: max-content;
+        &.alignRight{
+            margin: 2rem 0;
+            h2 {
+                margin-top: 0;
+            }
+        }
+        span{
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #e63946;
+        }
+        h2{
+            margin-top: 1rem;
+        }
+    }
     .formContent{
         max-width: 80rem;
         width: 100%;

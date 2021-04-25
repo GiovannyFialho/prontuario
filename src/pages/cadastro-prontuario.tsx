@@ -24,6 +24,8 @@ export default function Cadastro() {
         historico: dadoHistorico
     };
 
+    const [statusError, setStatusError] = useState("");
+
     function handlePost(event) {
         event.preventDefault();
 
@@ -33,48 +35,60 @@ export default function Cadastro() {
     useEffect(() => {
         api.get("queixas")
             .then((response) => setQueixa(response.data.data))
-            .catch((err) => console.log(`Ops! Error: ${err}`));
+            .catch((err) => setStatusError(err.message));
 
         api.get("doencas")
             .then((response) => setDoencas(response.data.data))
-            .catch((err) => console.log(`Ops! Error: ${err}`));
+            .catch((err) => setStatusError(err.message));
     }, []);
 
     return (
         <Container>
-            <Title>Cadastro de Prontuário</Title>
+            {queixa.length && doencas.length ? (
+                <>
+                    <Title>Cadastro de Prontuário</Title>
 
-            <div className="formContent">
-                <div className="titleForm">
-                    <h2>Anamnese</h2>
+                    <div className="formContent">
+                        <div className="titleForm">
+                            <h2>Anamnese</h2>
+                        </div>
+
+                        <form>
+                            <SelectInputQueixas
+                                label="Queixa Principal"
+                                items={queixa}
+                                setDadoQueixa={setDadoQueixa}
+                                dadoQueixa={dadoQueixa}
+                            />
+
+                            <SelectInputDoencas
+                                label="Doenças Adulto"
+                                items={doencas}
+                                listaDoencas={listaDoencas}
+                                setListaDoencas={setListaDoencas}
+                            />
+
+                            <TextArea
+                                title="Histórico da Moléstia"
+                                dadoHistorico={dadoHistorico}
+                                setDadoHistorico={setDadoHistorico}
+                            />
+
+                            <button className="buttonAdd" onClick={handlePost}>
+                                Salvar
+                            </button>
+                        </form>
+                    </div>
+                </>
+            ) : (
+                <div className="msgError">
+                    <span>Error | {statusError}</span>
+                    <h2>
+                        Ops! Estamos com alguma instabildiade no sistema, por
+                        favor, tente novamente mais tarde.
+                    </h2>
                 </div>
-
-                <form>
-                    <SelectInputQueixas
-                        label="Queixa Principal"
-                        items={queixa}
-                        setDadoQueixa={setDadoQueixa}
-                        dadoQueixa={dadoQueixa}
-                    />
-
-                    <SelectInputDoencas
-                        label="Doenças Adulto"
-                        items={doencas}
-                        listaDoencas={listaDoencas}
-                        setListaDoencas={setListaDoencas}
-                    />
-
-                    <TextArea
-                        title="Histórico da Moléstia"
-                        dadoHistorico={dadoHistorico}
-                        setDadoHistorico={setDadoHistorico}
-                    />
-
-                    <button className="buttonAdd" onClick={handlePost}>
-                        Salvar
-                    </button>
-                </form>
-            </div>
+            )}
         </Container>
     );
 }
