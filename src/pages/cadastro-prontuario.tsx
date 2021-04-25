@@ -11,7 +11,7 @@ import selectMock from "components/SelectInputQueixas/mock";
 import api from "services/api";
 
 export default function Cadastro() {
-    const [queixas, setQueixas] = useState([]);
+    const [queixa, setQueixa] = useState([]);
     const [doencas, setDoencas] = useState([]);
 
     const [dadoQueixa, setDadoQueixa] = useState("");
@@ -32,7 +32,7 @@ export default function Cadastro() {
 
     useEffect(() => {
         api.get("queixas")
-            .then((response) => setQueixas(response.data.data))
+            .then((response) => setQueixa(response.data.data))
             .catch((err) => console.log(`Ops! Error: ${err}`));
 
         api.get("doencas")
@@ -52,7 +52,7 @@ export default function Cadastro() {
                 <form>
                     <SelectInputQueixas
                         label="Queixa Principal"
-                        items={queixas}
+                        items={queixa}
                         setDadoQueixa={setDadoQueixa}
                         dadoQueixa={dadoQueixa}
                     />
