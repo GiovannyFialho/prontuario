@@ -22,13 +22,13 @@ const GlobalStyles = createGlobalStyle`
     }
     .buttonAdd{
         color: #fff;
-        font-size: 1.3rem;
-        font-weight: 700;
+        font-size: 2rem;
+        font-weight: 500;
         text-decoration: none;
-        padding: 10px 15px;
+        padding: 15px 20px;
         margin: 2rem 0;
         background-color: #e63946;
-        width: max-content;
+        width: 100%;
         border-radius: .5rem;
         transition: background-color .2s ease-in-out;
         border: none;
