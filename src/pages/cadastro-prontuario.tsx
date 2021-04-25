@@ -19,9 +19,9 @@ export default function Cadastro() {
     const [dadoHistorico, setDadoHistorico] = useState("");
 
     const dadosPost = {
-        dadoQueixa,
-        listaDoencas,
-        dadoHistorico
+        queixa: dadoQueixa,
+        doencas: listaDoencas,
+        historico: dadoHistorico
     };
 
     function handlePost(event) {
