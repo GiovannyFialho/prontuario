@@ -43,13 +43,18 @@ const GlobalStyles = createGlobalStyle`
         background-color: #fff;
         border-radius: .8rem;
         width: 100%;
-        span{
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #e63946;
-        }
-        h2{
-            text-align: center;
+        .content{
+            max-width: 60rem;
+            margin: 0 auto;
+            p{
+                font-size: 1.6rem;
+                font-weight: 600;
+                color: #e63946;
+                margin-bottom: 1rem;
+            }
+            h2{
+                line-height: 2rem;
+            }
         }
     }
 `;

@@ -21,7 +21,7 @@ export default function TestApi({ queixas, doencas }) {
 
     return (
         <Container>
-            {queixas.data.length && doencas.data.length ? (
+            {!!queixas.data && !!doencas.data ? (
                 <>
                     <Title>Cadastro de Prontuário</Title>
 
@@ -66,11 +66,13 @@ export default function TestApi({ queixas, doencas }) {
                 </>
             ) : (
                 <div className="msgError">
-                    <span>Error</span>
-                    <h2>
-                        Ops! Estamos com alguma instabildiade no sistema, por
-                        favor, tente novamente mais tarde.
-                    </h2>
+                    <div className="content">
+                        <p>Error</p>
+                        <h2>
+                            Ops! Estamos com alguma instabildiade no sistema,
+                            por favor, tente novamente mais tarde.
+                        </h2>
+                    </div>
                 </div>
             )}
         </Container>
@@ -81,21 +83,12 @@ export async function getStaticProps() {
     const resQueixas = await fetch(
         "http://assina-prontuario.herokuapp.com/queixas"
     );
-    const queixas = await resQueixas?.json();
+    const queixas = resQueixas.ok == true ? await resQueixas.json() : [];
 
     const resDoencas = await fetch(
         "http://assina-prontuario.herokuapp.com/doencas"
     );
-    const doencas = await resDoencas?.json();
-
-    if (!queixas || !doencas) {
-        return {
-            redirect: {
-                destination: "/",
-                permanent: false
-            }
-        };
-    }
+    const doencas = resDoencas.ok == true ? await resDoencas.json() : [];
 
     return {
         props: {

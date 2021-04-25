@@ -80,7 +80,10 @@ export default function Home({ prontuarios }) {
                     </ContainerProntuario>
                 ) : (
                     <div className="msgError">
-                        <h2>Nenhum prontuário cadastrado</h2>
+                        <div className="content">
+                            <p>Ops!</p>
+                            <h2>Nenhum prontuário cadastrado no momento.</h2>
+                        </div>
                     </div>
                 )}
                 <Link href="/cadastro-prontuario" passHref>
