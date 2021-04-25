@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
 
 import {
@@ -18,16 +17,26 @@ type itemsProps = {
 export type SelectInputDoencasProps = {
     label: string;
     items: itemsProps[];
+    listaDoencas?: React.ReactNode[];
+    setListaDoencas?: React.ReactNode;
 };
 
-const SelectInputDoencas = ({ label, items }: SelectInputDoencasProps) => {
-    const [doencas, setDoencas] = useState([]);
-
+const SelectInputDoencas = ({
+    label,
+    items,
+    listaDoencas,
+    setListaDoencas
+}: SelectInputDoencasProps) => {
     return (
         <Wrapper>
             <Label>{label}</Label>
 
-            <Select onChange={(e) => setDoencas([...doencas, e.target.value])}>
+            <Select
+                onChange={(e) =>
+                    setListaDoencas([...listaDoencas, e.target.value])
+                }
+            >
+                <option hidden>Selecionar...</option>
                 {items.map((item) => (
                     <option
                         key={`item-${item.id}`}
@@ -40,15 +49,15 @@ const SelectInputDoencas = ({ label, items }: SelectInputDoencasProps) => {
             </Select>
 
             <Selected>
-                {doencas.map((doenca, index) => (
+                {listaDoencas?.map((doenca, index) => (
                     <SelectedItem key={`doenca-${index}`}>
                         {doenca}
 
                         <SelectedIconClose>
                             <CloseOutline
                                 onClick={(e) =>
-                                    setDoencas(
-                                        doencas.filter((e) => e !== doenca)
+                                    setListaDoencas(
+                                        listaDoencas.filter((e) => e !== doenca)
                                     )
                                 }
                                 size={18}

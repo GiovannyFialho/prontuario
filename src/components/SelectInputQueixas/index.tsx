@@ -8,13 +8,25 @@ type itemsProps = {
 export type SelectInputQueixasProps = {
     label: string;
     items: itemsProps[];
+    setDadoQueixa?: React.ReactNode;
+    dadoQueixa?: React.ReactNode;
 };
 
-const SelectInputQueixas = ({ label, items }: SelectInputQueixasProps) => (
+const SelectInputQueixas = ({
+    label,
+    items,
+    setDadoQueixa,
+    dadoQueixa
+}: SelectInputQueixasProps) => (
     <Wrapper>
         <Label>{label}</Label>
 
-        <Select required>
+        <Select
+            required
+            dadoQueixa={dadoQueixa}
+            onChange={(e) => setDadoQueixa(e.target.value)}
+        >
+            <option hidden>Selecionar...</option>
             {items.map((item) => (
                 <option
                     key={`item-${item.id}`}

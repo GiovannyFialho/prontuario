@@ -11,8 +11,24 @@ import selectMock from "components/SelectInputQueixas/mock";
 import api from "services/api";
 
 export default function Cadastro() {
-    const [doencas, setDoencas] = useState([]);
     const [queixas, setQueixas] = useState([]);
+    const [doencas, setDoencas] = useState([]);
+
+    const [dadoQueixa, setDadoQueixa] = useState("");
+    const [listaDoencas, setListaDoencas] = useState([]);
+    const [dadoHistorico, setDadoHistorico] = useState("");
+
+    const dadosPost = {
+        dadoQueixa,
+        listaDoencas,
+        dadoHistorico
+    };
+
+    function handlePost(event) {
+        event.preventDefault();
+
+        console.log(dadosPost);
+    }
 
     useEffect(() => {
         api.get("queixas")
@@ -37,16 +53,26 @@ export default function Cadastro() {
                     <SelectInputQueixas
                         label="Queixa Principal"
                         items={queixas}
+                        setDadoQueixa={setDadoQueixa}
+                        dadoQueixa={dadoQueixa}
                     />
 
                     <SelectInputDoencas
                         label="Doenças Adulto"
                         items={doencas}
+                        listaDoencas={listaDoencas}
+                        setListaDoencas={setListaDoencas}
                     />
 
-                    <TextArea title="Histórico da Moléstia" />
+                    <TextArea
+                        title="Histórico da Moléstia"
+                        dadoHistorico={dadoHistorico}
+                        setDadoHistorico={setDadoHistorico}
+                    />
 
-                    <button className="buttonAdd">Salvar</button>
+                    <button className="buttonAdd" onClick={handlePost}>
+                        Salvar
+                    </button>
                 </form>
             </div>
         </Container>

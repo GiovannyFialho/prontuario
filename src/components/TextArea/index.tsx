@@ -2,9 +2,15 @@ import { Wrapper, Label, InputTextArea } from "./styles";
 
 export type TextAreaProps = {
     title: string;
+    dadoHistorico: React.ReactNode;
+    setDadoHistorico: React.ReactNode;
 };
 
-const TextArea = ({ title }: TextAreaProps) => (
+const TextArea = ({
+    title,
+    dadoHistorico,
+    setDadoHistorico
+}: TextAreaProps) => (
     <Wrapper>
         <Label>{title}</Label>
 
@@ -15,6 +21,8 @@ const TextArea = ({ title }: TextAreaProps) => (
             role="textbox"
             alt="textarea-input"
             required
+            value={dadoHistorico}
+            onChange={(e) => setDadoHistorico(e.target.value)}
         />
     </Wrapper>
 );
