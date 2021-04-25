@@ -24,6 +24,7 @@ const GlobalStyles = createGlobalStyle`
         color: #fff;
         font-size: 2rem;
         font-weight: 500;
+        text-align: center;
         text-decoration: none;
         padding: 15px 20px;
         margin: 2rem 0;
@@ -42,20 +43,13 @@ const GlobalStyles = createGlobalStyle`
         background-color: #fff;
         border-radius: .8rem;
         width: 100%;
-        max-width: max-content;
-        &.alignRight{
-            margin: 2rem 0;
-            h2 {
-                margin-top: 0;
-            }
-        }
         span{
             font-size: 1.2rem;
             font-weight: 600;
             color: #e63946;
         }
         h2{
-            margin-top: 1rem;
+            text-align: center;
         }
     }
 `;
