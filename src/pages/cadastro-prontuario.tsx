@@ -6,6 +6,8 @@ import SelectInputQueixas from "components/SelectInputQueixas";
 import SelectInputDoencas from "components/SelectInputDoencas";
 import TextArea from "components/TextArea";
 
+import { FormContent, TitleForm, Form } from "styles/formCadastro";
+
 export default function TestApi({ queixas, doencas }) {
     const [dadoQueixa, setDadoQueixa] = useState("");
     const [listaDoencas, setListaDoencas] = useState([]);
@@ -17,24 +19,18 @@ export default function TestApi({ queixas, doencas }) {
         historico: dadoHistorico
     };
 
-    function handlePost(event) {
-        event.preventDefault();
-
-        console.log(dadosPost);
-    }
-
     return (
         <Container>
             {queixas.data.length && doencas.data.length ? (
                 <>
                     <Title>Cadastro de Prontuário</Title>
 
-                    <div className="formContent">
-                        <div className="titleForm">
-                            <h2>Anamnese</h2>
-                        </div>
+                    <FormContent>
+                        <TitleForm>
+                            <Title>Anamnese</Title>
+                        </TitleForm>
 
-                        <form>
+                        <Form>
                             <SelectInputQueixas
                                 label="Queixa Principal"
                                 items={queixas.data}
@@ -55,11 +51,18 @@ export default function TestApi({ queixas, doencas }) {
                                 setDadoHistorico={setDadoHistorico}
                             />
 
-                            <button className="buttonAdd" onClick={handlePost}>
+                            <button
+                                className="buttonAdd"
+                                onClick={(e) => {
+                                    e.preventDefault();
+
+                                    console.log(dadosPost);
+                                }}
+                            >
                                 Salvar
                             </button>
-                        </form>
-                    </div>
+                        </Form>
+                    </FormContent>
                 </>
             ) : (
                 <div className="msgError">
@@ -78,12 +81,12 @@ export async function getStaticProps() {
     const resQueixas = await fetch(
         "http://assina-prontuario.herokuapp.com/queixas"
     );
-    const queixas = await resQueixas.json();
+    const queixas = await resQueixas?.json();
 
     const resDoencas = await fetch(
         "http://assina-prontuario.herokuapp.com/doencas"
     );
-    const doencas = await resDoencas.json();
+    const doencas = await resDoencas?.json();
 
     if (!queixas || !doencas) {
         return {

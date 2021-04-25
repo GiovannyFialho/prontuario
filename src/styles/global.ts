@@ -58,27 +58,6 @@ const GlobalStyles = createGlobalStyle`
             margin-top: 1rem;
         }
     }
-    .formContent{
-        max-width: 80rem;
-        width: 100%;
-        background-color: #fff;
-        border-radius: .8rem;
-        .titleForm{
-            background-color: #bee3db;
-            padding: 10px 15px;
-            margin-bottom: 1rem;
-            border-top-left-radius: .8rem;
-            border-top-right-radius: .8rem;
-            h2 {
-                font-weight: 500;
-                font-size: 1.8rem;
-                color: ${darken(0.6, "#bee3db")};
-            }
-        }
-        form {
-            padding: 0 1rem;
-        }
-    }
 `;
 
 export default GlobalStyles;
