@@ -56,7 +56,17 @@ export default function TestApi({ queixas, doencas }) {
                                 onClick={(e) => {
                                     e.preventDefault();
 
-                                    console.log(dadosPost);
+                                    fetch(
+                                        "http://assina-prontuario.herokuapp.com/prontuario",
+                                        {
+                                            method: "POST",
+                                            body: dadosPost
+                                        }
+                                    )
+                                        .then((res) => res.json())
+                                        .catch((err) =>
+                                            console.log(`erro! ${err}`)
+                                        );
                                 }}
                             >
                                 Salvar
