@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { Container } from "components/Container";
 import Title from "components/Title";
@@ -6,14 +6,7 @@ import SelectInputQueixas from "components/SelectInputQueixas";
 import SelectInputDoencas from "components/SelectInputDoencas";
 import TextArea from "components/TextArea";
 
-import selectMock from "components/SelectInputQueixas/mock";
-
-import api from "services/api";
-
-export default function Cadastro() {
-    const [queixa, setQueixa] = useState([]);
-    const [doencas, setDoencas] = useState([]);
-
+export default function TestApi({ queixas, doencas }) {
     const [dadoQueixa, setDadoQueixa] = useState("");
     const [listaDoencas, setListaDoencas] = useState([]);
     const [dadoHistorico, setDadoHistorico] = useState("");
@@ -24,27 +17,15 @@ export default function Cadastro() {
         historico: dadoHistorico
     };
 
-    const [statusError, setStatusError] = useState("");
-
     function handlePost(event) {
         event.preventDefault();
 
         console.log(dadosPost);
     }
 
-    useEffect(() => {
-        api.get("queixas")
-            .then((response) => setQueixa(response.data.data))
-            .catch((err) => setStatusError(err.message));
-
-        api.get("doencas")
-            .then((response) => setDoencas(response.data.data))
-            .catch((err) => setStatusError(err.message));
-    }, []);
-
     return (
         <Container>
-            {queixa.length && doencas.length ? (
+            {queixas.data.length && doencas.data.length ? (
                 <>
                     <Title>Cadastro de Prontuário</Title>
 
@@ -56,14 +37,14 @@ export default function Cadastro() {
                         <form>
                             <SelectInputQueixas
                                 label="Queixa Principal"
-                                items={queixa}
+                                items={queixas.data}
                                 setDadoQueixa={setDadoQueixa}
                                 dadoQueixa={dadoQueixa}
                             />
 
                             <SelectInputDoencas
                                 label="Doenças Adulto"
-                                items={doencas}
+                                items={doencas.data}
                                 listaDoencas={listaDoencas}
                                 setListaDoencas={setListaDoencas}
                             />
@@ -82,7 +63,7 @@ export default function Cadastro() {
                 </>
             ) : (
                 <div className="msgError">
-                    <span>Error | {statusError}</span>
+                    <span>Error</span>
                     <h2>
                         Ops! Estamos com alguma instabildiade no sistema, por
                         favor, tente novamente mais tarde.
@@ -91,4 +72,32 @@ export default function Cadastro() {
             )}
         </Container>
     );
+}
+
+export async function getStaticProps() {
+    const resQueixas = await fetch(
+        "http://assina-prontuario.herokuapp.com/queixas"
+    );
+    const queixas = await resQueixas.json();
+
+    const resDoencas = await fetch(
+        "http://assina-prontuario.herokuapp.com/doencas"
+    );
+    const doencas = await resDoencas.json();
+
+    if (!queixas || !doencas) {
+        return {
+            redirect: {
+                destination: "/",
+                permanent: false
+            }
+        };
+    }
+
+    return {
+        props: {
+            queixas,
+            doencas
+        }
+    };
 }
