@@ -13,6 +13,9 @@ export default function TestApi({ queixas, doencas }) {
     const [listaDoencas, setListaDoencas] = useState([]);
     const [dadoHistorico, setDadoHistorico] = useState("");
 
+    const [queixaObrigatoria, setQueixaObrigatoria] = useState("");
+    const [historicoObrigatoria, setHistoricoObrigatoria] = useState("");
+
     const dadosPost = {
         queixa: dadoQueixa,
         doencas: listaDoencas,
@@ -36,6 +39,7 @@ export default function TestApi({ queixas, doencas }) {
                                 items={queixas.data}
                                 setDadoQueixa={setDadoQueixa}
                                 dadoQueixa={dadoQueixa}
+                                setQueixaObrigatoria={queixaObrigatoria}
                             />
 
                             <SelectInputDoencas
@@ -49,12 +53,33 @@ export default function TestApi({ queixas, doencas }) {
                                 title="Histórico da Moléstia"
                                 dadoHistorico={dadoHistorico}
                                 setDadoHistorico={setDadoHistorico}
+                                setHistoricoObrigatoria={historicoObrigatoria}
                             />
 
                             <button
                                 className="buttonAdd"
                                 onClick={(e) => {
                                     e.preventDefault();
+
+                                    if (!dadoQueixa) {
+                                        alert(
+                                            "É preciso preencher o campo de queixa"
+                                        );
+
+                                        setQueixaObrigatoria("obrigatorio");
+                                    } else {
+                                        setQueixaObrigatoria("");
+                                    }
+
+                                    if (!dadoHistorico) {
+                                        alert(
+                                            "É preciso preencher o campo de histórico"
+                                        );
+
+                                        setHistoricoObrigatoria("obrigatorio");
+                                    } else {
+                                        setHistoricoObrigatoria("");
+                                    }
 
                                     fetch(
                                         "http://assina-prontuario.herokuapp.com/prontuario",

@@ -10,19 +10,20 @@ export type SelectInputQueixasProps = {
     items: itemsProps[];
     setDadoQueixa?: React.ReactNode;
     dadoQueixa?: React.ReactNode;
+    setQueixaObrigatoria: React.ReactNode;
 };
 
 const SelectInputQueixas = ({
     label,
     items,
     setDadoQueixa,
-    dadoQueixa
+    dadoQueixa,
+    setQueixaObrigatoria
 }: SelectInputQueixasProps) => (
     <Wrapper>
-        <Label>{label}</Label>
+        <Label className={setQueixaObrigatoria}>{label} *</Label>
 
         <Select
-            required
             dadoQueixa={dadoQueixa}
             onChange={(e) => setDadoQueixa(e.target.value)}
         >

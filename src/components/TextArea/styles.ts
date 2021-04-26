@@ -7,6 +7,9 @@ export const Wrapper = styled.div`
 export const Label = styled.h2`
     font-weight: 500;
     margin-bottom: 1rem;
+    &.obrigatorio {
+        color: #e63946;
+    }
 `;
 
 export const InputTextArea = styled.textarea`

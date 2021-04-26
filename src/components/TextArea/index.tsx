@@ -4,15 +4,17 @@ export type TextAreaProps = {
     title: string;
     dadoHistorico: React.ReactNode;
     setDadoHistorico: React.ReactNode;
+    setHistoricoObrigatoria: React.ReactNode;
 };
 
 const TextArea = ({
     title,
     dadoHistorico,
-    setDadoHistorico
+    setDadoHistorico,
+    setHistoricoObrigatoria
 }: TextAreaProps) => (
     <Wrapper>
-        <Label>{title}</Label>
+        <Label className={setHistoricoObrigatoria}>{title} *</Label>
 
         <InputTextArea
             placeholder="Digite..."
@@ -20,7 +22,6 @@ const TextArea = ({
             maxLength="1000"
             role="textbox"
             alt="textarea-input"
-            required
             value={dadoHistorico}
             onChange={(e) => setDadoHistorico(e.target.value)}
         />
