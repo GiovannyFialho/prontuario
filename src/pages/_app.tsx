@@ -1,3 +1,4 @@
+import { ProntuariosProvider } from "context/prontuarios";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 
@@ -17,7 +18,9 @@ function App({ Component, pageProps }: AppProps) {
                 <link rel="manifest" href="/manifest.json" />
             </Head>
             <GlobalStyles />
-            <Component {...pageProps} />
+            <ProntuariosProvider>
+                <Component {...pageProps} />
+            </ProntuariosProvider>
         </>
     );
 }

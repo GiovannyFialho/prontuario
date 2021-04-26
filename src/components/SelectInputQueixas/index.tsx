@@ -29,11 +29,7 @@ const SelectInputQueixas = ({
         >
             <option hidden>Selecionar...</option>
             {items.map((item) => (
-                <option
-                    key={`item-${item.id}`}
-                    value={item.label}
-                    data-id={item.id}
-                >
+                <option key={`item-${item.id}`} value={item.id}>
                     {item.label}
                 </option>
             ))}

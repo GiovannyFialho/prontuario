@@ -27,39 +27,34 @@ const SelectInputDoencas = ({
     listaDoencas,
     setListaDoencas
 }: SelectInputDoencasProps) => {
+    const handleChange = (e) => {
+        setListaDoencas([...listaDoencas, e.target.value]);
+    };
+
+    const handleClose = (id) => (e) => {
+        setListaDoencas(listaDoencas.filter((e) => e !== id));
+    };
+
     return (
         <Wrapper>
             <Label>{label}</Label>
 
-            <Select
-                onChange={(e) =>
-                    setListaDoencas([...listaDoencas, e.target.value])
-                }
-            >
+            <Select onChange={handleChange}>
                 <option hidden>Selecionar...</option>
                 {items.map((item) => (
-                    <option
-                        key={`item-${item.id}`}
-                        value={item.label}
-                        data-id={item.id}
-                    >
+                    <option key={`item-${item.id}`} value={item.id}>
                         {item.label}
                     </option>
                 ))}
             </Select>
 
             <Selected>
-                {listaDoencas?.map((doenca, index) => (
-                    <SelectedItem key={`doenca-${index}`}>
-                        {doenca}
-
+                {listaDoencas?.map((doencaId) => (
+                    <SelectedItem key={`doenca-${doencaId}`}>
+                        {items.find((doenca) => doenca.id == doencaId)?.label}
                         <SelectedIconClose>
                             <CloseOutline
-                                onClick={(e) =>
-                                    setListaDoencas(
-                                        listaDoencas.filter((e) => e !== doenca)
-                                    )
-                                }
+                                onClick={handleClose(doencaId)}
                                 size={18}
                             />
                         </SelectedIconClose>
