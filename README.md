@@ -15,9 +15,8 @@ yarn dev
 yarn test
 ```
 ### Observando alterações nos testes
-> É preciso ter dado pelo menos o ```git init``` no projeto antes de iniciar esse comando.
 ```shell
-test:watch
+yarn test:watch
 ```
 ## Storybook
 ```shell
