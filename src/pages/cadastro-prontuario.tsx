@@ -97,7 +97,13 @@ export default function TestApi({ queixas, doencas }) {
                                             router.push("/");
                                         })
                                         .catch((err) => {
-                                            alert(`erro! ${err}`);
+                                            alert(
+                                                "Erro! Tente novamente mais tarde"
+                                            );
+
+                                            console.log(
+                                                `Ops! temos um erro ${err}`
+                                            );
 
                                             router.push("/");
                                         });
