@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import { Container } from "components/Container";
 import Title from "components/Title";
@@ -9,6 +10,8 @@ import TextArea from "components/TextArea";
 import { FormContent, TitleForm, Form } from "styles/formCadastro";
 
 export default function TestApi({ queixas, doencas }) {
+    const router = useRouter();
+
     const [dadoQueixa, setDadoQueixa] = useState("");
     const [listaDoencas, setListaDoencas] = useState([]);
     const [dadoHistorico, setDadoHistorico] = useState("");
@@ -88,10 +91,16 @@ export default function TestApi({ queixas, doencas }) {
                                             body: dadosPost
                                         }
                                     )
-                                        .then((res) => res.json())
-                                        .catch((err) =>
-                                            console.log(`erro! ${err}`)
-                                        );
+                                        .then(() => {
+                                            alert(`Obrigado!`);
+
+                                            router.push("/");
+                                        })
+                                        .catch((err) => {
+                                            alert(`erro! ${err}`);
+
+                                            router.push("/");
+                                        });
                                 }}
                             >
                                 Salvar
